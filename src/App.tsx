@@ -1,18 +1,16 @@
 import React, {useEffect} from 'react';
-import logo from './logo.svg';
 import './App.css';
 import styled from "styled-components";
+import {Time, timeMode} from "./components/time/Time";
+import {ControllTime} from "./components/controllTime/ControllTime";
 
 function App() {
 
     const [time, setTime] = React.useState(new Date());
 
-    /*useEffect(() => {
-      setTime(new Date());
-    }, [time]);*/
 
-     useEffect(() => {
-         const timer = setInterval(() => {
+    useEffect(() => {
+        const timer = setInterval(() => {
             setTime(new Date());
         }, 1000);
 
@@ -20,23 +18,19 @@ function App() {
 
     }, [time]);
 
-    return<Wrapper>
-        <TimeStyled >
-            {time.toLocaleTimeString()}
-        </TimeStyled>
+
+    return <Wrapper>
+       <Time mode={timeMode.digital} />
+       {/*<ControllTime time={time} />*/}
     </Wrapper>
 }
 
 export default App;
 
 
-const TimeStyled = styled.time`
-    color: rgb(151, 151, 151);
-    font-size: 200px;
-    font-weight: 700;
-`;
+
 const Wrapper = styled.div`
-background-color: #333;
+    background-color: #333;
     display: flex;
     align-items: center;
     justify-content: center;
